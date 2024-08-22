@@ -182,6 +182,15 @@ def submit_stock():
     conn.commit()   
     #將使用者導至首頁
     return redirect('/')
+
+@app.route('/stock-delete',methods=['post'])
+def stock_delete():
+    stock_id=request.values['stock_id']
+    conn=get_db()
+    cursor=conn.cursor()
+    cursor.execute("delete from stock where stock_id=%s",(stock_id,))
+    conn.commit()
+    return redirect('/')
     
 
 
